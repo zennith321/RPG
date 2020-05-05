@@ -34,7 +34,6 @@ public class Mover : MonoBehaviour
         if(hasHit)
         {
             agent.SetDestination(hit.point);
-            print("raycast has hit");
         }
     }
 }
