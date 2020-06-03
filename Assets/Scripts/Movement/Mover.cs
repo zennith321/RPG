@@ -3,35 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Mover : MonoBehaviour
+namespace RPG.Movement
 {
-  [SerializeField] Transform target;
-  NavMeshAgent agent;
-
-  // Start is called before the first frame update
-  void Start()
+  public class Mover : MonoBehaviour
   {
-    agent = gameObject.GetComponent<NavMeshAgent>();
-  }
+    [SerializeField] Transform target;
+    NavMeshAgent agent;
 
-  // Update is called once per frame
-  void Update()
-  {
-    UpdateAnimator();
-    //Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
-  }
+    // Start is called before the first frame update
+    void Start()
+    {
+      agent = gameObject.GetComponent<NavMeshAgent>();
+    }
 
-  public void MoveTo(Vector3 destination)
-  {
-  agent.SetDestination(destination);
-  }
+    // Update is called once per frame
+    void Update()
+    {
+      UpdateAnimator();
+      //Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
+    }
 
-  private void UpdateAnimator()
-  {
-    Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
-    Vector3 localVelocity = transform.InverseTransformDirection(velocity);
-    float speed = localVelocity.z;
+    public void MoveTo(Vector3 destination)
+    {
+      agent.SetDestination(destination);
+    }
 
-    GetComponent<Animator>().SetFloat("forwardSpeed", speed); //string reference
+    private void UpdateAnimator()
+    {
+      Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+      Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+      float speed = localVelocity.z;
+
+      GetComponent<Animator>().SetFloat("forwardSpeed", speed); //string reference
+    }
   }
 }
