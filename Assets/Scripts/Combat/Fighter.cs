@@ -6,7 +6,7 @@ namespace RPG.Combat
 	{
 		public void Attack()
 		{
-			
+			print("Damage dealt");
 		}
 	}
 }
