@@ -8,15 +8,13 @@ namespace RPG.Movement
 	public class Mover : MonoBehaviour
 	{
 		[SerializeField] Transform target;
-		NavMeshAgent agent;
+		NavMeshAgent navMeshAgent;
 
-		// Start is called before the first frame update
 		void Start()
 		{
-			agent = gameObject.GetComponent<NavMeshAgent>();
+			navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
 		}
 
-		// Update is called once per frame
 		void Update()
 		{
 			UpdateAnimator();
@@ -25,7 +23,17 @@ namespace RPG.Movement
 
 		public void MoveTo(Vector3 destination)
 		{
-			agent.SetDestination(destination);
+			navMeshAgent.SetDestination(destination);
+			navMeshAgent.isStopped = false;
+			if(Vector3.Distance(destination, gameObject.transform.position) <= 2f) //TODO put in weapon range
+			{
+				Stop();
+			}
+		}
+
+		public void Stop()
+		{
+			navMeshAgent.isStopped = true;
 		}
 
 		private void UpdateAnimator()
