@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Combat;
 
 namespace RPG.Movement
 {
@@ -18,17 +19,18 @@ namespace RPG.Movement
 		void Update()
 		{
 			UpdateAnimator();
-			//Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
 		}
+
+		public void StartMoveAction(Vector3 destination)
+		{
+      GetComponent<Fighter>().Cancel();
+			MoveTo(destination);
+    }
 
 		public void MoveTo(Vector3 destination)
 		{
 			navMeshAgent.SetDestination(destination);
 			navMeshAgent.isStopped = false;
-			if(Vector3.Distance(destination, gameObject.transform.position) <= 2f) //TODO put in weapon range
-			{
-				Stop();
-			}
 		}
 
 		public void Stop()
