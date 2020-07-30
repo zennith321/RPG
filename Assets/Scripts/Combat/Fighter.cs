@@ -1,5 +1,7 @@
 using RPG.Movement;
 using UnityEngine;
+using RPG.Core;
+
 
 namespace RPG.Combat
 {
@@ -8,27 +10,28 @@ namespace RPG.Combat
 		[SerializeField] float weaponRange = 2f;
 		Transform target;
 		private void Update()
-    {
+		{
 			if (target == null) return;
 
-      if (target != null && !GetIsInRange())
-      {
-        GetComponent<Mover>().MoveTo(target.position);
-      }
-      else
-      {
-        GetComponent<Mover>().Stop();
-      }
-    }
+			if (target != null && !GetIsInRange())
+			{
+				GetComponent<Mover>().MoveTo(target.position);
+			}
+			else
+			{
+				GetComponent<Mover>().Stop();
+			}
+		}
 
-    private bool GetIsInRange()
-    {
-      return Vector3.Distance(transform.position, target.position) < weaponRange;
-    }
+		private bool GetIsInRange()
+		{
+			return Vector3.Distance(transform.position, target.position) < weaponRange;
+		}
 
-    public void Attack(CombatTarget combatTarget)
+		public void Attack(CombatTarget combatTarget)
 		{
 			target = combatTarget.transform;
+			GetComponent<ActionScheduler>().StartAction(this);
 		}
 
 		public void Cancel()
