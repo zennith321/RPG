@@ -40,7 +40,7 @@ namespace RPG.Movement
 
 		private void UpdateAnimator()
 		{
-			Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+			Vector3 velocity = navMeshAgent.velocity;
 			Vector3 localVelocity = transform.InverseTransformDirection(velocity);
 			float speed = localVelocity.z;
 
