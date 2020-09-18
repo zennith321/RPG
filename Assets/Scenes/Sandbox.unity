@@ -542,7 +542,7 @@ PrefabInstance:
     - target: {fileID: 9075820937765519782, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}
       propertyPath: m_Name
-      value: Player
+      value: PlayerOld
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c1cc6acbcb00b345a961b952e19f195, type: 3}
@@ -2433,7 +2433,7 @@ PrefabInstance:
     - target: {fileID: 6203470901424545297, guid: d32002d2cb0f24e41a45158d7bc9dacf,
         type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: EnemyOld
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d32002d2cb0f24e41a45158d7bc9dacf, type: 3}
