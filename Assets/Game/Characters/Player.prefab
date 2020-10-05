@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 683082601928615366, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}
       propertyPath: timeBetweenAttacks
-      value: 4
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1136244085944684601, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}
@@ -82,6 +82,11 @@ PrefabInstance:
     - target: {fileID: 9075820937765519782, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075820937765519782, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
