@@ -11,7 +11,7 @@ namespace RPG.Combat
 		[SerializeField] float timeBetweenAttacks = 1f;
 		[SerializeField] float weaponDamage = 5f;
 		Health target;
-		float timeSinceLastAttack = 0;
+		float timeSinceLastAttack = Mathf.Infinity;
 
 		private void Update()
 		{
@@ -34,9 +34,12 @@ namespace RPG.Combat
 		private void AttackBehaviour()
 		{
 			transform.LookAt(target.transform);
-			if (timeSinceLastAttack < timeBetweenAttacks) return;
-      TriggerAttack();
-      timeSinceLastAttack = 0;
+			if (timeSinceLastAttack > timeBetweenAttacks)
+			{
+				// This will trigger the Hit() event.
+				TriggerAttack();
+				timeSinceLastAttack = 0;
+			}
     }
 
     private void TriggerAttack()

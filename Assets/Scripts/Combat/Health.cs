@@ -4,7 +4,7 @@ namespace RPG.Combat
 {
 	public class Health : MonoBehaviour
 	{
-		[SerializeField] float health = 100f;
+		[SerializeField] float healthPoints = 100f;
 		bool isDead = false;
 		public bool IsDead()
 		{
@@ -13,18 +13,16 @@ namespace RPG.Combat
 
 		public void TakeDamage(float damage)
 		{
-			//health = Mathf.Max(health - damage, 0); //one line method of incrementing damage
-			health -= damage;
-			if(health <= 0f)
+			healthPoints = Mathf.Max(healthPoints - damage, 0);
+			if (healthPoints == 0)
 			{
-				health = 0f;
 				Die();
 			}
 		}
 
 		private void Die()
 		{
-			if(isDead) return;
+			if (isDead) return;
 			//GetComponent<Collider>().enabled = false;
 			isDead = true;
 			GetComponent<Animator>().SetTrigger("die");
