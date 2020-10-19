@@ -8,11 +8,13 @@ namespace RPG.Control
 	{
 		private void OnDrawGizmos() 
 		{
+			const float waypointGizmoRadius = 0.3f;
+
 			for (int i = 0; i < transform.childCount; i++)
 			{
 				// transform.GetChild(i);;
 				Gizmos.color = Color.green;
-				Gizmos.DrawSphere(transform.GetChild(i), 1f);
+				Gizmos.DrawSphere(transform.GetChild(i).position, waypointGizmoRadius);
 			}
 		}
 	}
