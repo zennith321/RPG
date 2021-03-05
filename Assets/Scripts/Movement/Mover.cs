@@ -2,47 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Core;
 
-public class Mover : MonoBehaviour
+namespace RPG.Movement
 {
-    [SerializeField] Transform target;
-    NavMeshAgent agent;
+	public class Mover : MonoBehaviour, IAction
+	{
+		[SerializeField] Transform target;
+		NavMeshAgent navMeshAgent;
+		Health health;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        agent = gameObject.GetComponent<NavMeshAgent>();
-    }
+		void Start()
+		{
+			navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+			health = GetComponent<Health>();
+		}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetMouseButton(0))
-        {
-            MoveToCursor();
-        }
-        UpdateAnimator();
-        //Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
+		void Update()
+		{
+			navMeshAgent.enabled = !health.IsDead();
+			UpdateAnimator();
+		}
 
-    }
+		public void StartMoveAction(Vector3 destination)
+		{
+			GetComponent<ActionScheduler>().StartAction(this);
+			MoveTo(destination);
+		}
 
-    private void MoveToCursor()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        bool hasHit = Physics.Raycast(ray, out hit);
-        if(hasHit)
-        {
-            agent.SetDestination(hit.point);
-        }
-    }
-    private void UpdateAnimator()
-    {
-        Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
-        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
-        float speed = localVelocity.z;
+		public void MoveTo(Vector3 destination)
+		{
+			navMeshAgent.destination = destination;
+			navMeshAgent.isStopped = false;
+		}
 
-        GetComponent<Animator>().SetFloat("forwardSpeed", speed); //string reference
-    }
+		public void Cancel()
+		{
+			navMeshAgent.isStopped = true;
+		}
 
+		private void UpdateAnimator()
+		{
+			Vector3 velocity = navMeshAgent.velocity;
+			Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+			float speed = localVelocity.z;
+
+			GetComponent<Animator>().SetFloat("forwardSpeed", speed); //string reference
+		}
+	}
 }
