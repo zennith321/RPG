@@ -40,16 +40,16 @@ namespace RPG.Combat
 				TriggerAttack();
 				timeSinceLastAttack = 0;
 			}
-    }
+		}
 
-    private void TriggerAttack()
-    {
-      GetComponent<Animator>().ResetTrigger("stopAttack");
-      GetComponent<Animator>().SetTrigger("attack");
-    }
+		private void TriggerAttack()
+		{
+			GetComponent<Animator>().ResetTrigger("stopAttack");
+			GetComponent<Animator>().SetTrigger("attack");
+		}
 
-    // Animation Event
-    void Hit()
+		// Animation Event
+		void Hit()
 		{
 			if (target == null) return;
 			target.TakeDamage(weaponDamage);
@@ -66,24 +66,24 @@ namespace RPG.Combat
 			target = combatTarget.GetComponent<Health>();
 		}
 
-    public bool CanAttack(GameObject combatTarget)
-    {
-      if (combatTarget == null) return false;
-      Health targetToTest = combatTarget.GetComponent<Health>();
-      return targetToTest != null && !targetToTest.IsDead();
-    }
+		public bool CanAttack(GameObject combatTarget)
+		{
+			if (combatTarget == null) return false;
+			Health targetToTest = combatTarget.GetComponent<Health>();
+			return targetToTest != null && !targetToTest.IsDead();
+		}
 
 		public void Cancel()
-    {
-      StopAttack();
-      target = null;
+		{
+			StopAttack();
+			target = null;
 			GetComponent<Mover>().Cancel();
-    }
+		}
 
-    private void StopAttack()
-    {
-      GetComponent<Animator>().ResetTrigger("attack");
-      GetComponent<Animator>().SetTrigger("stopAttack");
-    }
-  }
+		private void StopAttack()
+		{
+			GetComponent<Animator>().ResetTrigger("attack");
+			GetComponent<Animator>().SetTrigger("stopAttack");
+		}
+	}
 }
