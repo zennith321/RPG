@@ -9,10 +9,21 @@ namespace RPG.SceneManagement
 	public class SavingWrapper : MonoBehaviour
 	{
 		const string defaultSaveFile = "save";
+		[SerializeField] float fadeInTime = 0.2f;
+		[SerializeField] float fadeWaitTime = .01f;
+
+		IEnumerator Start() 
+		{
+			Fader fader = FindObjectOfType<Fader>();
+			fader.FadeOutImmediate();
+			yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
+			yield return new WaitForSeconds(fadeWaitTime);
+			yield return fader.FadeIn(fadeInTime);
+		}
 
 		void Update()
 		{
-			if(Input.GetKeyDown(KeyCode.L))
+			if (Input.GetKeyDown(KeyCode.L))
 			{
 				Load();
 			}
@@ -20,16 +31,25 @@ namespace RPG.SceneManagement
 			{
 				Save();
 			}
+			if (Input.GetKeyDown(KeyCode.O))
+			{
+				Delete();
+			}
 		}
 
-		private void Save()
+		public void Save()
 		{
 			GetComponent<SavingSystem>().Save(defaultSaveFile);
 		}
 
-		private void Load()
+		public void Load()
 		{
 			GetComponent<SavingSystem>().Load(defaultSaveFile);
+		}
+
+		private void Delete()
+		{
+			GetComponent<SavingSystem>().Delete(defaultSaveFile);
 		}
 	}
 }
