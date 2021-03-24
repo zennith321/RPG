@@ -101,6 +101,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+--- !u!4 &5307376251058182583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 423694, guid: 30cf93deff988e74e88a144bd2127c18,
+    type: 3}
+  m_PrefabInstance: {fileID: 5307376251058302649}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7464342782599885231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,9 +130,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 683082601928615366, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c9721b2085fc5b4bb33ba6d41cf7b8d,
+        type: 2}
+    - target: {fileID: 683082601928615366, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
       propertyPath: weaponDamage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 683082601928615366, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c9721b2085fc5b4bb33ba6d41cf7b8d,
+        type: 2}
+    - target: {fileID: 683082601928615366, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 5307376251058182583}
     - target: {fileID: 1136244085944684601, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}
       propertyPath: m_RootOrder
