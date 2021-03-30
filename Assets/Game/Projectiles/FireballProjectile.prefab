@@ -50,6 +50,10 @@ MonoBehaviour:
   isHoming: 0
   hitEffect: {fileID: 2302457091093092515, guid: 69d1b1037536b504884c93bb73d662db,
     type: 3}
+  maxLifeTime: 10
+  destroyOnHit:
+  - {fileID: 9053739661048527734}
+  lifeAfterImpact: 0.2
 --- !u!65 &4182395188308104230
 BoxCollider:
   m_ObjectHideFlags: 0
