@@ -11,6 +11,7 @@ namespace RPG.Combat
 		[SerializeField] Transform rightHandTransform = null;
 		[SerializeField] Transform leftHandTransform = null;
 		[SerializeField] Weapon defaultWeapon = null;
+		[SerializeField] GameObject defaultHitEffect = null;
 
 		Health target;
 		float timeSinceLastAttack = Mathf.Infinity;
@@ -66,7 +67,8 @@ namespace RPG.Combat
 			}
 			else
 			{
-			target.TakeDamage(currentWeapon.GetWeaponDamage());
+				target.TakeDamage(currentWeapon.GetWeaponDamage());
+				if (defaultHitEffect != null) Instantiate(defaultHitEffect, GetAimLocation(), transform.rotation);
 			}
 		}
 
@@ -98,6 +100,13 @@ namespace RPG.Combat
 			StopAttack();
 			target = null;
 			GetComponent<Mover>().Cancel();
+		
+		}
+		public void EquipWeapon(Weapon weapon)
+		{
+			currentWeapon = weapon;
+			Animator animator = GetComponent<Animator>();
+			weapon.Spawn(rightHandTransform, leftHandTransform, animator);
 		}
 
 		private void StopAttack()
@@ -106,11 +115,14 @@ namespace RPG.Combat
 			GetComponent<Animator>().SetTrigger("stopAttack");
 		}
 
-		public void EquipWeapon(Weapon weapon)
+		private Vector3 GetAimLocation()
 		{
-			currentWeapon = weapon;
-			Animator animator = GetComponent<Animator>();
-			weapon.Spawn(rightHandTransform, leftHandTransform, animator);
+			CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
+			if (targetCapsule == null)
+			{
+				return target.transform.position;
+			}
+			return target.transform.position + Vector3.up * targetCapsule.height / 2; //Aim at the middle of the capsule collider
 		}
 	}
 }
