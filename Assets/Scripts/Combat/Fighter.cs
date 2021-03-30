@@ -1,11 +1,11 @@
 using RPG.Movement;
 using UnityEngine;
 using RPG.Core;
-
+using RPG.Saving;
 
 namespace RPG.Combat
 {
-	public class Fighter : MonoBehaviour, IAction
+	public class Fighter : MonoBehaviour, IAction, ISaveable
 	{
 		[SerializeField] float timeBetweenAttacks = 1f;
 		[SerializeField] Transform rightHandTransform = null;
@@ -19,7 +19,10 @@ namespace RPG.Combat
 
 		private void Start() 
 		{
-			EquipWeapon(defaultWeapon);
+			if (currentWeapon == null)
+			{
+				EquipWeapon(defaultWeapon);
+			}
 		}
 
 		private void Update()
@@ -123,6 +126,18 @@ namespace RPG.Combat
 				return target.transform.position;
 			}
 			return target.transform.position + Vector3.up * targetCapsule.height / 2; //Aim at the middle of the capsule collider
+		}
+
+		public object CaptureState()
+		{
+			return currentWeapon.name;
+		}
+
+		public void RestoreState(object state)
+		{
+			string weaponName = (string)state;
+			Weapon weapon = Resources.Load<Weapon>(weaponName);
+			EquipWeapon(weapon);
 		}
 	}
 }
