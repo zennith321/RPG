@@ -14,7 +14,7 @@ namespace RPG.Control
 			health = GetComponent<Health>();
 		}
 
-		private void Update()
+		private void Update() //TODO make character lock on enemy when holding click, similar to PoE
 		{
 			if (health.IsDead()) return;
 

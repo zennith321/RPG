@@ -113,6 +113,11 @@ namespace RPG.Combat
 			weapon.Spawn(rightHandTransform, leftHandTransform, animator);
 		}
 
+		public Health GetTarget()
+		{
+			return target;
+		}
+
 		private void StopAttack()
 		{
 			GetComponent<Animator>().ResetTrigger("attack");
