@@ -1,9 +1,8 @@
-using System;
-using RPG.Core;
+using RPG.Resources;
 using UnityEngine;
 
 namespace RPG.Combat
-{		
+{
 	public class Projectile : MonoBehaviour 
 	{
 		[SerializeField] float speed = 1f;

@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RPG.Control
-{	
+{
 	public class PatrolPath : MonoBehaviour 
 	{
 		private void OnDrawGizmos() 
