@@ -67,11 +67,11 @@ namespace RPG.Combat
 			if (target == null) return;
 			if (currentWeapon.HasProjectile())
 			{
-				currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+				currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject);
 			}
 			else
 			{
-				target.TakeDamage(currentWeapon.GetWeaponDamage());
+				target.TakeDamage(gameObject, currentWeapon.GetWeaponDamage());
 				if (defaultHitEffect != null) Instantiate(defaultHitEffect, GetAimLocation(), transform.rotation);
 			}
 		}
