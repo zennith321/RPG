@@ -57,6 +57,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1812712551087448511, guid: 5b10b762580b0c84ab6526516e6dbffb,
         type: 3}
+    - target: {fileID: -8591892032852571103, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: shouldUseModifiers
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6315954448596449429, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}
       propertyPath: healthPoints

@@ -135,6 +135,14 @@ namespace RPG.Combat
 			}
 		}
 
+		public IEnumerable<float> GetPercentageModifiers(Stat stat)
+		{
+			if (stat == Stat.Damage)
+			{
+				yield return currentWeapon.GetPercentageBonus();
+			}
+		}
+
 		private Vector3 GetAimLocation()
 		{
 			CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
