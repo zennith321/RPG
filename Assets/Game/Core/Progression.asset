@@ -22,6 +22,13 @@ MonoBehaviour:
       - 200
       - 400
       - 700
+    - stat: 3
+      levels:
+      - 8
+      - 10
+      - 14
+      - 20
+      - 40
     - stat: 2
       levels:
       - 10
@@ -36,6 +43,9 @@ MonoBehaviour:
     - stat: 1
       levels:
       - 10
+    - stat: 3
+      levels:
+      - 8
   - characterClass: 2
     stats: []
   - characterClass: 3
@@ -48,3 +58,6 @@ MonoBehaviour:
     - stat: 1
       levels:
       - 20
+    - stat: 3
+      levels:
+      - 6
