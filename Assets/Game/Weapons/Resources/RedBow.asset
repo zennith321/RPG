@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedBow
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: 008a7eced610b544290697f5a33f2fe0, type: 2}
-  equippedPrefab: {fileID: 1637103708396861087, guid: cc4d43e67d88df24c9874d745761108b,
+  equippedPrefab: {fileID: -6479004918744821101, guid: cc4d43e67d88df24c9874d745761108b,
     type: 3}
   weaponDamage: 0
   weaponPercentageBonus: 0
