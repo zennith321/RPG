@@ -209,6 +209,41 @@ PrefabInstance:
       propertyPath: healthPoints
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: -6315954448596449429, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6315954448596449429, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6315954448596449429, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 4177192833517363162}
+    - target: {fileID: -6315954448596449429, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6315954448596449429, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Aggrevate
+      objectReference: {fileID: 0}
+    - target: {fileID: -6315954448596449429, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: RPG.Control.AIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -6315954448596449429, guid: 7c1cc6acbcb00b345a961b952e19f195,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 442536701, guid: 7c1cc6acbcb00b345a961b952e19f195, type: 3}
       propertyPath: m_Speed
       value: 3
@@ -303,7 +338,7 @@ PrefabInstance:
     - target: {fileID: 3526826223298613886, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9075820937765519782, guid: 7c1cc6acbcb00b345a961b952e19f195,
         type: 3}

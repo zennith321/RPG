@@ -4,6 +4,7 @@ using RPG.Core;
 using RPG.Movement;
 using RPG.Attributes;
 using UnityEngine;
+using System;
 
 namespace RPG.Control
 {
@@ -11,11 +12,13 @@ namespace RPG.Control
 	{
 		[SerializeField] float chaseDistance = 5f;
 		[SerializeField] float suspicionTime = 3f;
+		[SerializeField] float aggroCooldownTime = 5f;
 		[SerializeField] PatrolPath patrolPath;
 		[SerializeField] float waypointTolerance = 1f;
 		[SerializeField] float waypointDwellTime = 2f;
 		[Range(0,1)]
 		[SerializeField] float patrolSpeedFraction = 0.2f;
+		[SerializeField] float shoutDistance = 5f;
 		
 		GameObject player;
 		ActionScheduler actionScheduler;
@@ -26,6 +29,7 @@ namespace RPG.Control
 		LazyValue<Vector3> guardPosition;
 		float timeSinceLastSawPlayer = Mathf.Infinity;
 		float timeSinceArrivedAtWaypoint = Mathf.Infinity;
+		float timeSinceAggrevated = Mathf.Infinity;
 		int currentWaypointIndex = 0;
 
 		private void Awake() 
@@ -53,7 +57,7 @@ namespace RPG.Control
 		{
 			if (health.IsDead()) return;
 
-			if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
+			if (IsAggrevated() && fighter.CanAttack(player))
 			{
 				AttackBehaviour();
 			}
@@ -73,6 +77,7 @@ namespace RPG.Control
 		{
 			timeSinceLastSawPlayer += Time.deltaTime;
 			timeSinceArrivedAtWaypoint += Time.deltaTime;
+			timeSinceAggrevated += Time.deltaTime;
 		}
 
 		private void PatrolBehaviour()
@@ -93,6 +98,11 @@ namespace RPG.Control
 			{
 				mover.StartMoveAction(nextPosition, patrolSpeedFraction);
 			}
+		}
+
+		public void Aggrevate()
+		{
+			timeSinceAggrevated = 0;
 		}
 
 		private bool AtWaypoint()
@@ -121,12 +131,26 @@ namespace RPG.Control
 		{
 			timeSinceLastSawPlayer = 0;
 			fighter.Attack(player);
+
+			AggrevateNearbyEnemies();
 		}
 
-		private bool InAttackRangeOfPlayer()
+		private void AggrevateNearbyEnemies()
+		{
+			RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+			foreach (RaycastHit hit in hits)
+			{
+				AIController ai = hit.collider.GetComponent<AIController>();
+				if (ai == null) continue;
+
+				ai.Aggrevate();
+			}
+		}
+
+		private bool IsAggrevated()
 		{
 			float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-			return distanceToPlayer < chaseDistance;
+			return distanceToPlayer < chaseDistance || timeSinceAggrevated < aggroCooldownTime;
 		}
 		// Called by Unity
 		private void OnDrawGizmosSelected() {
